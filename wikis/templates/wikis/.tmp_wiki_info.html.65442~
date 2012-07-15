@@ -1,0 +1,28 @@
+{% load i18n%}				
+	
+	{% if wiki_read %}
+	<div class="row">
+		<div class="span-1">		
+			<a class="thumbnail" href="{{ article.get_absolute_url }}" data-analytic="profile" data-tooltip="article">
+				<img src="/media/images/categories_icons/{{wiki_article.category}}.png" alt="{{ article.category }}"></img>
+			</a>	
+		</div>
+		<div class="span6">
+			<div class="row">
+				<div class="span6">			
+					<h2>
+						<a href="{{ wiki_article.get_absolute_url }}">{{ wiki_article.title }}</a>			
+					</h2>			
+					<p>
+						<small>				
+						 {% trans 'by ' %} <a href="{% url profiles_profile_detail wiki_article.author.username %}" data-analytic="profile" data-tooltip="user">
+				 		{{ wiki_article.author.first_name }} {{ wiki_article.author.last_name }} </a>	
+						</small>
+					</p>
+				</div>
+			</div>										
+		</div						
+	</div>
+	<hr>	
+	{% endif %}
+	

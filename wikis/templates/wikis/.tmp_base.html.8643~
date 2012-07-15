@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}  
+{% block head_title %}{{ user }}{% endblock %}
+{% block extra_head %}
+		<meta name="keywords" content="pagecal, pages, brands, celebrities .."/>
+		<meta name="description" content="pagecal {{ wiki_cal }},pages, brands, celebrities ..."/>
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/timepicker/timepicker.js"></script>
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/qtip/jquery.qtip.min.js"></script>
+		<link rel="Stylesheet" type="text/css" href="{{ MEDIA_URL }}css/qtip/jquery.qtip.min.css" />		
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/util-forms.js"></script>
+		<link rel="Stylesheet" type="text/css" href="{{ MEDIA_URL }}css/autosuggest/autoSuggest.css" />			
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/autosuggest/jquery.autoSuggest.minified.js"></script>
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/autocompletion.js"></script>
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/cleditor/jquery.cleditor.css" />
+    	<script type="text/javascript" src="{{ MEDIA_URL }}js/cleditor/jquery.cleditor.min.js"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+{% endblock %}	
+{% block sidebar %}
+	{% include "sidebars/sidebar_pagecals.html" %}
+{% endblock %}
+
+{% block content %}  
+
+{% endblock %}

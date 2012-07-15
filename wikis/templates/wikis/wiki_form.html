@@ -1,0 +1,104 @@
+{% extends "wikis/base.html" %}
+{% load i18n %}
+{% block head_title %}Article {{ wiki_article }} Form{% endblock %}
+{% block content %}
+<div id='content'>	
+	{% include "wikis/wiki_info.html" %}		
+	<div id="calMoreDetails">
+		<div class="forms_error" id="error_list"></div>
+		<form enctype="multipart/form-data" id="cal_form" method="POST" action="{{ action }}">{%csrf_token%}
+		<table>
+		{{ wiki_form.as_table }}
+		</table>
+		<input type="submit" value="{% trans "Submit" %}" />
+		</form>
+	</div>	
+</div>
+
+{% endblock %}
+
+{% block extra_content %}    
+    <script type="text/javascript">    																		
+$(document).ready(function() {	
+	error_management();
+	$('{{class}}').parent().addClass('active');
+	if ('{{wiki_edit_protection}}' == 'False'){
+		$('#id_protection').parents('tr').hide();
+	}
+	if ('{{lock}}' == 'True'){		
+		    $.ajax({
+	    		url: '{{ lock_url }}',
+		    	type: 'POST',
+		    	datatype: 'json',
+		    	data: {'csrfmiddlewaretoken': '{{ csrf_token }}',},
+		    	success:function(json) { 
+				}
+			});		
+	}
+	if('{{ unlock_url}}' != ''){
+		$(window).unload(function() {																											
+					$.ajax({
+			    		url: '{{ unlock_url }}',
+				    	type: 'POST',
+				    	datatype: 'json',
+				    	data: {'csrfmiddlewaretoken': '{{ csrf_token }}',},
+				    	success:function(json) { 
+						}
+					});																
+		});	
+		window.onbeforeunload = function() {																													
+					$.ajax({
+			    		url: '{{ unlock_url }}',
+				    	type: 'POST',
+				    	datatype: 'json',
+				    	data: {'csrfmiddlewaretoken': '{{ csrf_token }}',},
+				    	success:function(json) { 
+						}
+					});																
+		};
+	};
+	if ('{{lock}}' == 'True'){		
+		    $.ajax({
+	    		url: '{{ lock_url }}',
+		    	type: 'POST',
+		    	datatype: 'json',
+		    	data: {'csrfmiddlewaretoken': '{{ csrf_token }}',},
+		    	success:function(json) { 
+				}
+			});
+			}
+	window.onbeforeunload = function() {																											
+				$.ajax({
+		    		url: '{{ unlock_url }}',
+			    	type: 'POST',
+			    	datatype: 'json',
+			    	data: {'csrfmiddlewaretoken': '{{ csrf_token }}',},
+			    	success:function(json) { 
+					}
+				});																
+	};		
+	qtip_function('#cal_form');
+	group_element('#cal_form');	
+	var can_read = charge_list_id('{{can_read_name|safe}}', $("#id_can_read").val());	
+	var can_write = charge_list_id('{{can_write_name|safe}}', $("#id_can_write").val());
+	var tags = charge_list_string($("#id_tags").val());
+	var relatives = charge_list_id('{{relatives_title|safe}}', $("#id_relatives").val());
+	var parent = charge_list_id('{{parent_title|safe}}', $("#id_parent").val());
+	place = new google.maps.places.Autocomplete(document.getElementById('id_address'));
+	set_autosuggest_int('#id_parent', '#id_parent_clone', '{% url articles_titles %}', parent, 'strat typing titles');
+	set_autosuggest_int('#id_relatives', '#id_relatives_clone', '{% url articles_titles %}', relatives, 'strat typing titles');		
+	$('#id_contents').cleditor({
+		 controls:     // controls to add to the toolbar
+                        "bold italic underline " +
+                        "style | color removeformat | bullets numbering | outdent " +
+                        "indent | alignleft center alignright justify | undo redo | " +
+                        "link unlink |",
+		 styles:       // styles in the style popup
+                        [["Paragraph", "<p>"], ["Header 1", "<h1>"], ["Header 2", "<h2>"],
+                        ["Header 3", "<h3>"]], 
+	});
+	$(".cleditorMain").parents('td').css('padding', '0 10px 0 0');	
+});
+    
+    </script>
+{% endblock %}

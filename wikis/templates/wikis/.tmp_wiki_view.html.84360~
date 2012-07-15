@@ -1,0 +1,35 @@
+{% extends "wcals/pagecal/base.html" %}
+{% load easy_maps_tags %}
+{% load i18n %}
+{% block head_title %}PageCal {{ wiki_cal }}{% endblock %}
+{% block extra_head %}
+	<meta name="keywords" content="pagecal, pages, brands, celebrities .."/>
+	<meta name="description" content="pagecal {{ wiki_cal }},pages, brands, celebrities ..."/>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/post-comment.js"></script>
+{% endblock %}
+{% block content %}
+<div id='content' class="cal-views">
+	{% include "wcals/commun/cal_info.html" %}		
+	{% include "wcals/commun/cal_more_details.html" %}
+	{% include "wcals/commun/cal_content.html" %}	
+</div>
+{% endblock %}
+
+{% block extra_content %}
+	<script type="text/javascript">
+		$(function(){
+			$('a.a_info').parent().addClass('active');
+			$("a.tags").button({
+            icons: {
+                primary: "ui-icon-tag"
+            }
+        });
+		$('div.comment-form').hide();										   
+		$("div.comment-form form").submit(function(){			
+	        ajaxComment("{{ MEDIA_URL }}",$(this));
+	        return false;
+		    });
+		})
+	
+	</script>    
+{% endblock %}

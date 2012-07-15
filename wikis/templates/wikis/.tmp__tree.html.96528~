@@ -1,0 +1,15 @@
+{% load wcals_tags %}
+{% with wiki_cal.basecal_set.all as all_cals and wiki_cal.basecal_set.all.count as count_cals %}	
+	<span>			
+		<h3><a class="cal_title" href= "{{cal.get_absolute_url}}" > {{wiki_cal.title}} </a></h3>			
+	</span>
+	{% if count_cals > 0 %}
+	<ul>
+		{% for cal in all_cals %}
+		<li>
+			{% draw_tree cal %}		
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+{% endwith %}

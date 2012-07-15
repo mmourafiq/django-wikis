@@ -1,0 +1,36 @@
+{% extends "wikis/base.html" %}
+{% load i18n %}
+{% load wikis_tags %}
+{% block head_title %}Article {{ wiki_article }} Tree{% endblock %}
+{% block extra_head %}
+	<meta name="keywords" content="article, pages, brands, celebrities .."/>
+	<meta name="description" content="articlee {{ wiki_article }} ree view,pages, brands, celebrities ..."/>
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery_treeview/jquery.treeview.css" />
+	<script src="{{MEDIA_URL}}js/jquery_treeview/jquery.treeview.js" type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+<div id='content' class="cal-views">
+	{% include "wikis/wiki_info.html" %}		
+	<div class="calMoreDetails">		
+		<ul id="root" class="treeview-famfamfam">
+			<li>
+			{% for wiki in wiki_article.article_set.all %}				
+				{% draw_tree wiki %}
+			{% endfor %}
+			</li>
+		</ul>
+	</div>
+</div>
+{% endblock %}
+{% block extra_content %}
+	<script type="text/javascript">
+		$(function(){
+			$('{{class}}').parent().addClass('active');
+			$("#root").treeview({
+			toggle: function() {				
+			}
+			});
+		})
+	
+	</script>    
+{% endblock %}

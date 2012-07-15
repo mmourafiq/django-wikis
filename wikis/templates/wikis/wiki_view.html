@@ -1,0 +1,34 @@
+{% extends "wikis/base.html" %}
+{% load i18n %}
+{% block head_title %}Article {{ wiki_article }}{% endblock %}
+{% block extra_head %}
+	<meta name="keywords" content="article, pages, brands, celebrities .."/>
+	<meta name="description" content="article  {{ wiki_article }},pages, brands, celebrities ..."/>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/post-comment.js"></script>
+{% endblock %}
+{% block content %}
+<div id='content' class="article-views">
+	{% include "wikis/wiki_info.html" %}		
+	{% include "wikis/wiki_more_details.html" %}
+	{% include "wikis/wiki_content.html" %}	
+</div>
+{% endblock %}
+
+{% block extra_content %}
+	<script type="text/javascript">
+		$(function(){
+			$('a.a_info').parent().addClass('active');
+			$("a.tags").button({
+            icons: {
+                primary: "ui-icon-tag"
+            }
+        });
+		$('div.comment-form').hide();										   
+		$("div.comment-form form").submit(function(){			
+	        ajaxComment("{{ MEDIA_URL }}",$(this));
+	        return false;
+		    });
+		})
+	
+	</script>    
+{% endblock %}

@@ -1,0 +1,15 @@
+{% load wikis_tags %}
+{% with wiki_article.article_set.all as all_articles and wiki_article.article_set.all.count as count_articles %}	
+	<span>			
+		<h3><a class="article_title" href= "{{article.get_absolute_url}}" > {{wiki_article.title}} </a></h3>			
+	</span>
+	{% if count_articles > 0 %}
+	<ul>
+		{% for article in all_articles %}
+		<li>
+			{% draw_tree cal %}		
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+{% endwith %}
