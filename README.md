@@ -1,9 +1,12 @@
 django-wikis
 ============
 
-A simple wiki app.
+*A simple wiki app.*
 
 Creation/Edtion/view of wikis.
-Version management.
+
+Versions management.
+
 Tree management of wikis.
+
 Cleditor edition.
