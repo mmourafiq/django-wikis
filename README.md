@@ -1,7 +1,7 @@
 django-wikis
 ============
 
-*A simple wiki app.*
+*A simple wiki app with django.*
 
 Creation/Edtion/view of wikis.
 
