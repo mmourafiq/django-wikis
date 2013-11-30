@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Mar 20, 2011
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2011
-
-other contributers:
-'''
 from django.conf.urls import patterns, include, url
 from wikis.views import versions as versions
 from wikis.views import articles as articles

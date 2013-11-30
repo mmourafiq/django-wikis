@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Mar 20, 2011
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2011
-
-other contributers:
-'''
 from django import forms
 from django.forms import widgets
 from django.utils.translation import ugettext_lazy as _

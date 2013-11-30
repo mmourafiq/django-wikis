@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Mar 20, 2011
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2011
-
-other contributers:
-'''
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response

@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Mar 20, 2011
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2011
-
-other contributers:
-'''
 from django.shortcuts import get_object_or_404, render_to_response 
 from django.template import RequestContext, Context, loader
 from django.utils.html import strip_tags
